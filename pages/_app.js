@@ -63,13 +63,9 @@ class _App extends App {
     return (
       <Container>
         <Provider store={store}>
-          { isAuth ?
-            <Layout before={false}>
-              <Component {...pageProps} />
-            </Layout>
-            :
-            <Auth />
-          }
+          <Layout before={false}>
+            <Component {...pageProps} />
+          </Layout>
         </Provider>
       </Container>
     );

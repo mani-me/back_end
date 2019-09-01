@@ -39,17 +39,10 @@ class BoardJsx extends React.Component {
   }
 
   componentDidMount() {
-    this._mounted = true;
-    const identityId = this.props.userData ? this.props.userData.identityId : null;
-    if (identityId) this.getData(endpoint, tableName);
+    this.getData(endpoint, tableName);
   }
 
   componentDidUpdate(prevProps) {
-    const prevIdentityId = prevProps.userData ? prevProps.userData.identityId : null;
-    const identityId = this.props.userData ? this.props.userData.identityId : null;
-    if (prevIdentityId != identityId) {
-      this.getData(endpoint, tableName);
-    }
   }
 
   componentWillUnmount() {
@@ -63,46 +56,48 @@ class BoardJsx extends React.Component {
       data: []
     });
 
-    let userInit = {
-      headers: { 'Content-Type': 'application/json' }
-    }
-    const user = this.props.userData ? this.props.userData.identityId : '';
-    // this is the admin account, photogrammetry
-    if (user == 'us-west-2:b1ee9228-ca88-40b3-a242-6fadb2fe9a9e' || user == 'us-west-2:95a2f104-1308-42e3-bb65-033c4f9a6de4') {
-      API.get(endpoint, pathName, userInit).then(response => {
-        if(response && response.rows && this._mounted) {
-          this.setState({ data: response.rows });
-          // console.log(response.rows)
-        }
-      }).catch((err) => {
-        // console.log(err.stack);
-      });
-    } else {
-      if (tableName != 'users') return;
-      // get the array of ids that this user can see from rds. dynamodb might be good
-      // one user id -> many user ids
-
-      var dynamoDBObject = {};
-      await API.get('LambdaServer', `/access/${user}`).then(response => {
-        dynamoDBObject = response[0];
-      }).catch((err) => {
-        console.log(err);
-      });
-
-      for (const key in dynamoDBObject) {
-        const value = dynamoDBObject[key];
-        if (key == user) continue;
-        pathName = `/${tableName}/read/${value}`;
-
-        API.get(endpoint, pathName, userInit).then(response => {
-          if(response && response.rows && this._mounted) {
-            this.setState({ data: [...this.state.data, ...response.rows] });
-          }
-        }).catch((err) => {
-          console.log(err);
-        });
-      }
-    }
+    this.setState({
+      data: [{
+        _leftfingerscurvature: null,
+        _rightfingerscurvature: null,
+        acceptsconditions: true,
+        acceptsmarketing: "true",
+        credits: null,
+        currentpage: 0,
+        currentpagestr: null,
+        datecreated: "2019-08-24T19:42:12.998Z",
+        datelastlogin: null,
+        description: null,
+        designpref: "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8yOTY4Mjk3MTc3MDk4OQ==",
+        designpref2: null,
+        designpref3: null,
+        email: "beatrizdillon@hotmail.com",
+        firstname: "Beatriz",
+        fitstatus: null,
+        fitted: true,
+        lastname: "Dillon",
+        numpics: 5,
+        profilepicture: null,
+        referralid: null,
+        shopifyid: "2197992538221",
+        skincolor: null,
+        statusleftfingers: false,
+        statusleftthumb: false,
+        statusrightfingers: false,
+        statusrightthumb: false,
+        statusside: false,
+        stripeid: "cus_FgSRYxejfyW7B9",
+        subscription: null,
+        totalorders: null,
+        userid: "us-west-2:339a350f-94bb-4dd9-905c-a45914a753f2",
+        versionleftfingers: 1,
+        versionleftthumb: 1,
+        versionrightfingers: 1,
+        versionrightthumb: 1,
+        versionside: 1,
+        visible: true,
+      }]
+    })
   }
 
   // createRow = () => {

@@ -147,12 +147,14 @@ export const sendEmail = async dynamicData => {
 };
 
 export const presignedImageUri = async (adminIdentityId, clientIdentityId, latestKeys) => {
-  const init = {
-    body: { adminIdentityId, clientIdentityId, latestKeys },
-    headers: { 'Content-Type': 'application/json' }
-  };
-  const response = await API.post('LambdaServer', '/presigned', init);
-  return response;
+  // const init = {
+  //   body: { adminIdentityId, clientIdentityId, latestKeys },
+  //   headers: { 'Content-Type': 'application/json' }
+  // };
+  // const response = await API.post('LambdaServer', '/presigned', init);
+  // return response;
+
+  return ['', '', '', '', ''];
 };
 
 export const queryAdminDynamoDB = async user => {

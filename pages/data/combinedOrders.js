@@ -37,17 +37,10 @@ class BoardJsx extends React.Component {
   }
 
   componentDidMount() {
-    this._mounted = true;
-    const identityId = this.props.userData ? this.props.userData.identityId : null;
-    if (identityId) this.getData(endpoint, tableName);
+    this.getData(endpoint, tableName);
   }
 
   componentDidUpdate(prevProps) {
-    const prevIdentityId = prevProps.userData ? prevProps.userData.identityId : null;
-    const identityId = this.props.userData ? this.props.userData.identityId : null;
-    if (prevIdentityId != identityId) {
-      this.getData(endpoint, tableName);
-    }
   }
 
   componentWillUnmount() {
@@ -61,46 +54,27 @@ class BoardJsx extends React.Component {
       data: []
     });
 
-    let userInit = {
-      headers: { 'Content-Type': 'application/json' }
-    }
-    const user = this.props.userData ? this.props.userData.identityId : '';
-    // this is the admin account, photogrammetry
-    if (user == 'us-west-2:b1ee9228-ca88-40b3-a242-6fadb2fe9a9e') {
-      API.get(endpoint, pathName, userInit).then(response => {
-        if(response && response.rows && this._mounted) {
-          this.setState({ data: response.rows });
-          // console.log(response.rows)
+    this.setState({
+      data: [
+        {
+          comments: "",
+          datecreated: "2019-09-01T05:46:27.748Z",
+          deliverydate: "2019-09-01T05:46:27.511Z",
+          description: "",
+          discount: 0,
+          email: "olsonm23@gmail.com",
+          grouporderid: "af3f9e02-3532-4eac-bbe4-6f08c07591ce",
+          listedprice: 0,
+          naillength: "NOT SET",
+          nailproductid: "3984102391917",
+          nailshape: "NOT SET",
+          orderid: "c66d864a-917e-4d0c-8aa2-6be186feec34",
+          orderstatus: "",
+          shippingaddress: "Home|4507 SW Barton st||Bentonville|AR||72713",
+          userid: "us-west-2:cd7ea239-bf49-4ea7-a53e-4a9be71f84d7",
         }
-      }).catch((err) => {
-        // console.log(err.stack);
-      });
-    } else {
-      if (tableName != 'users') return;
-      // get the array of ids that this user can see from rds. dynamodb might be good
-      // one user id -> many user ids
-
-      var dynamoDBObject = {};
-      await API.get('LambdaServer', `/access/${user}`).then(response => {
-        dynamoDBObject = response[0];
-      }).catch((err) => {
-        console.log(err);
-      });
-
-      for (const key in dynamoDBObject) {
-        const value = dynamoDBObject[key];
-        if (key == user) continue;
-        pathName = `/${tableName}/read/${value}`;
-
-        API.get(endpoint, pathName, userInit).then(response => {
-          if(response && response.rows && this._mounted) {
-            this.setState({ data: [...this.state.data, ...response.rows] });
-          }
-        }).catch((err) => {
-          console.log(err);
-        });
-      }
-    }
+      ]
+    });
   }
 
   // createRow = () => {
