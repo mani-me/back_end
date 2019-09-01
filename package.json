@@ -1,0 +1,55 @@
+{
+  "name": "photogrammetry_react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mani-me/photogrammetry_react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mani-me/photogrammetry_react/issues"
+  },
+  "homepage": "https://github.com/mani-me/photogrammetry_react#readme",
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
+    "@zeit/next-css": "^1.0.1",
+    "aws-amplify": "^1.1.19",
+    "aws-amplify-react": "^2.3.0",
+    "axios": "^0.19.0",
+    "express": "^4.16.4",
+    "immutable": "^4.0.0-rc.12",
+    "isomorphic-unfetch": "^3.0.0",
+    "js-base64": "^2.5.1",
+    "next": "^7.0.2",
+    "next-redux-wrapper": "^2.1.0",
+    "prettier": "^1.18.2",
+    "react": "^16.6.3",
+    "react-copy-to-clipboard": "^5.0.1",
+    "react-csv": "^1.1.1",
+    "react-dom": "^16.6.3",
+    "react-redux": "^6.0.0",
+    "react-scroll": "^1.7.10",
+    "react-smooth-dnd": "^0.11.0",
+    "react-virtualized": "^9.21.0",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.1.1",
+    "styled-system": "^3.1.11",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.9.1"
+  }
+}

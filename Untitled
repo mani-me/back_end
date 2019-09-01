@@ -1,0 +1,109 @@
+//
+removed from auth admin in IAM
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mani-me-react-native-userfiles-1/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::mani-me-react-native-userfiles-1"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "s3:prefix": [
+                        "public/",
+                        "public/*",
+                        "protected/",
+                        "protected/*",
+                        "private/",
+                        "private/*"
+                    ]
+                }
+            }
+        }
+    ]
+}
+
+
+"arn:aws:execute-api:region:account-id:api-id/stage/METHOD_HTTP_VERB/Resource-path"
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "execute-api:Invoke"
+            ],
+            "Resource": [
+                "arn:aws:execute-api:us-west-1:052931065798:seet0wnvr7/*/*/*",
+                "arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/*/*",
+                "arn:aws:execute-api:us-west-1:052931065798:bems9o4jfe/*/GET/*"
+            ]
+        }
+    ]
+}
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "execute-api:Invoke"
+            ],
+            "Resource": [
+                "arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/POST/*/create",
+                "arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/POST/users/update/column",
+                "arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/GET/*/read/${cognito-identity.amazonaws.com:sub}",
+                "arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/GET/orders/read/"
+            ]
+        }
+    ]
+}
+
+"arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/POST/*/create",
+"arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/POST/*/update",
+"arn:aws:execute-api:us-west-1:052931065798:2ehwnnicy0/*/GET/*/read"
+
+${cognito-identity.amazonaws.com:sub}
+
+
+
+
+
+const GROUP_ORDERS_COLUMN_PROPERTIES = ['grouporderid', 'userid', 'grouporderstatus', 'insurance', 'shippingaddress', 'subtotal', 'taxes'];
+const USERS_COLUMN_PROPERTIES = ['userid', 'firstname', 'lastname', 'email', 'totalorders', 'fitted', 'datecreated', 'datelastlogin', 'description', 'subscription'];
+const ORDER_REVIEWS_COLUMN_PROPERTIES = ['reviewid', 'orderid', 'fingername', 'reviewdescription', 'category1', 'category2', 'category3'];
+const SHIPPING_ADDRESSES_COLUMN_PROPERTIES = ['shippingaddressid'];
+const PAYMENTS_COLUMN_PROPERTIES = ['paymentid'];
+const DESIGNERS_COLUMN_PROPERTIES = ['designerid'];
+const NAIL_PRODUCTS_COLUMN_PROPERTIES = ['nailproductid', 'datecreated', 'description', 'designerid', 'name', 'price', 'totalhates', 'totalmanime', 'totalpurchases', 'visible', 'picuri1', 'picuri2', 'picuri3', 'picuri4', 'picuri5'];
+const NAIL_CATEGORIES_COLUMN_PROPERTIES = ['categoryid', 'name'];
+const NAIL_PRODUCT_CATEGORIES_COLUMN_PROPERTIES = ['nailproductid', 'categoryid'];
+
+
+
+
+const GROUP_ORDERS_COLUMN_PROPERTIES_TYPE = [];
+const USERS_COLUMN_PROPERTIES_TYPE = [];
+const ORDER_REVIEWS_COLUMN_PROPERTIES_TYPE =
+const SHIPPING_ADDRESSES_COLUMN_PROPERTIES_TYPE = [];
+const PAYMENTS_COLUMN_PROPERTIES_TYPE = [];
+const DESIGNERS_COLUMN_PROPERTIES_TYPE = [];
+const NAIL_PRODUCTS_COLUMN_PROPERTIES_TYPE = [];
+const NAIL_CATEGORIES_COLUMN_PROPERTIES_TYPE = [];
+const NAIL_PRODUCT_CATEGORIES_COLUMN_PROPERTIES_TYPE = [];
